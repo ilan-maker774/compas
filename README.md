@@ -8,14 +8,17 @@ Compas n'est pas une plateforme de courtage : il aide à **mieux décider**, pas
 
 1. [Vision](docs/01-vision.md)
 2. [Modèle de données](docs/02-modele-de-donnees.md)
+3. [Règles de calcul](docs/03-calculs.md)
 
 ## État d'avancement
 
 - [x] Section 1 — Vision et principes directeurs
 - [x] Modèle de données
-- [ ] Import et calculs du portefeuille
-- [ ] Journal de thèse
-- [ ] Tableau de bord
+- [x] Import et calculs du portefeuille
+- [x] Journal de thèse
+- [x] Tableau de bord
+- [ ] Authentification (Auth.js) — prérequis avant toute mise en ligne
+- [ ] Chiffrement applicatif des textes de thèse
 
 ## Lancer le projet en local
 
@@ -26,7 +29,17 @@ cp .env.example .env
 docker compose up -d        # PostgreSQL local (bases compas et compas_test)
 npm install
 npm run db:migrate          # crée les tables
-npm run db:seed             # données de démonstration
-npm test                    # tests du modèle de données
+npm run db:seed             # profil de démonstration (cours simulés)
+npm test                    # tests unitaires et base de données
 npm run dev                 # http://localhost:3000
+npm run job:daily           # mise à jour des cours et taux (à planifier chaque jour)
 ```
+
+Sans profil, l'application ouvre la page « Bienvenue » : on y crée un profil, vide ou avec le portefeuille
+de démonstration.
+
+## Limites actuelles (V1 locale)
+- **Pas encore d'authentification** : application mono-utilisateur, à n'utiliser qu'en local. Tout passe par
+  `getCurrentUser()` (`src/server/current-user.ts`), seul point à modifier pour brancher Auth.js.
+- Les cours de démonstration sont **simulés** (source « démo »).
+- Divisions d'actions non gérées.
