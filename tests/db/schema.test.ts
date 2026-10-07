@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
-import { createDb, schema } from "../src/db";
-import { deleteUserData } from "../src/db/user-data";
+import { createDb, schema } from "../../src/db";
+import { deleteUserData } from "../../src/db/user-data";
 
 process.loadEnvFile?.(".env");
 const { db, pool } = createDb(process.env.TEST_DATABASE_URL);

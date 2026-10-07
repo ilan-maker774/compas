@@ -1,5 +1,5 @@
 import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { createDb } from "../src/db";
+import { createDb } from "../../src/db";
 
 /** Repart d'une base de test vierge et applique les migrations. */
 export default async function setup() {
